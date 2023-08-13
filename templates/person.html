@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>personal page</title>
+
+    <style>
+        #show_user{
+
+        border: 1px solid black:
+        display: flex;
+        flex-direction: column;
+        }
+        button{
+        background-color: red;
+        width: 80px;
+        height: 50px:
+        border-radius: 30px;
+        color: black;
+        font-size: 25px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="show_user">
+{% if user.gender == 'M'%}
+                        <div class="for_image"><img src="{% static 'profile.png' %}" alt="picture"></div>
+                    {% else %}
+                        <div class="for_image"><img src="{% static 'woman.png' %}" alt="picture"></div>
+                    {% endif %}
+        <p>{{user.name}}</p>
+        <p>{{user.surname}}</p>
+        <p>{{user.age}}</p>
+        <p>{{user.self_description}}</p>
+
+        <button onclick=back()>Back</button>
+    </div>
+
+<script>
+    const back = () => {
+        window.history.back();
+    }
+</script>
+</body>
+</html>

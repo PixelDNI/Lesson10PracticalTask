@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tinder</title>
+    <link rel="stylesheet" href="index.css">
+
+    <style>
+        nav{
+    width: 100%;
+    height: 8rem;
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    color: white;
+    position: relative;
+
+
+}
+nav ul{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+}
+#navbar_name{
+
+    font-size: 50px;
+}
+li{
+    margin: 0 10px;
+    list-style-type: none;
+    font-size: 23px;
+    cursor: pointer;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+
+#icon{
+    display: flex;
+    flex-direction: row;
+
+}
+#icon img{
+
+}
+#sign_in_button{
+    margin: 0 2rem;
+    border-radius: 50px;
+    background-color: white;
+
+    color: black;
+    padding: 10px 2rem;
+    min-width: 160px;
+    font-size: 15px;
+    font-weight: bold;
+
+
+
+}
+
+header{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+#user_cards{
+    margin: 5rem 0;
+    width: 400px;
+    height: 200px;
+    border-radius: 40px;
+    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    
+
+}
+
+#visit_button{
+    background-color: blue;
+    color: white;
+    width: 80px;
+    font-size: 15px;
+    height: 40px;
+    border-radius: 50px;
+    text-align: center;
+
+
+}
+.for_image{
+    width: 70px;
+    height: 70px;
+    padding: 4rem 2rem;
+}
+
+#user_cards img{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+    </style>
+
+</head>
+<body>
+
+    <nav>
+        <div id="icon">
+            <img src="{% static 'tinder.svg' %}" alt="tinder">
+            <h1 id="navbar_name">tinder</h1>
+        </div>
+        
+        <ul>
+            <li>Products</li>
+            <li>About Us</li>
+            <li>Security advices</li>
+            <li>Support</li>
+            <li>Download</li>
+        </ul>
+
+       <a href="{% url 'registration' %}"><button type="button" id="sign_in_button">Sign in</button></a>
+    </nav>
+    <header>
+
+
+
+            {% for user in users %}
+
+
+                <div id='user_cards'>
+                    {% if user.gender == 'M'%}
+                        <div class="for_image"><img src="{% static 'profile.png' %}" alt="picture"></div>
+                    {% else %}
+                        <div class="for_image"><img src="{% static 'woman.png' %}" alt="picture"></div>
+                    {% endif %}
+                    <p>Name: {{user.name}} </p>
+                    <p>Surname: {{user.surname}} </p>
+                    <p>Age: {{user.age}} </p>
+                    <a href="{{user.get_absolute_url}}"><button type="button" id="visit_button">Visit</button></a>
+                </div>
+
+
+            {% endfor %}
+
+
+    </header>
+    
+    
+    
+</body>
+</html>
